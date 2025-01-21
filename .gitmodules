@@ -1,0 +1,6 @@
+[submodule "BM_authService"]
+	path = BM_authService
+	url = https://github.com/prolgrammer/BM_authService.git
+[submodule "BM_fileService"]
+	path = BM_fileService
+	url = https://github.com/prolgrammer/BM_fileService.git
