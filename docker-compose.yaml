@@ -1,0 +1,21 @@
+version: '3.8'
+
+services:
+  auth:
+    container_name: "BM_auth"
+    env_file: ./BM_authService/.env
+    build:
+      context: ./BM_authService
+    depends_on:
+      - auth_db
+    ports:
+      - "8080:8080"
+  auth_db:
+    image: postgres:17
+    container_name: "BM_auth_db"
+    env_file: ./BM_authService/.env
+    volumes:
+      - ./BM_authService/config/pg:/etc/postgres:ro
+      - ./BM_authService/postgres-data:/var/lib/postgresql/data
+    command: ["postgres", "-c", "config_file=/etc/postgres/postgresql.conf"]
+
