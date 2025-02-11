@@ -18,4 +18,11 @@ services:
       - ./BM_authService/config/pg:/etc/postgres:ro
       - ./BM_authService/postgres-data:/var/lib/postgresql/data
     command: ["postgres", "-c", "config_file=/etc/postgres/postgresql.conf"]
-
+  auth_redis:
+    image: redis
+    container_name: "BM_auth_redis"
+    env_file:
+      - ./BM_authService/.env
+    volumes:
+      - ./BM_authService/config/redis:/etc/redis:ro
+    command: "/etc/redis/redis.conf"
