@@ -9,7 +9,7 @@ services:
     depends_on:
       - auth_db
     ports:
-      - "8080:8080"
+      - ${AUTH_HOST}:${AUTH_PORT}
   auth_db:
     image: postgres:17
     container_name: "BM_auth_db"
@@ -19,7 +19,7 @@ services:
       - ./BM_authService/postgres-data:/var/lib/postgresql/data
     command: ["postgres", "-c", "config_file=/etc/postgres/postgresql.conf"]
   auth_redis:
-    image: redis
+    image: redis:7.4.2
     container_name: "BM_auth_redis"
     env_file:
       - ./BM_authService/.env
