@@ -26,3 +26,21 @@ services:
     volumes:
       - ./BM_authService/config/redis:/etc/redis:ro
     command: "/etc/redis/redis.conf"
+
+#  app:
+#    container_name: "BM_app"
+#    env_file:
+#      - ./BM_fileService/.env
+#    build:
+#      context: ./BM_fileService
+#    ports:
+#      - ${APP_HOST}:${APP_PORT}
+
+  minio:
+    image: minio/minio
+    container_name: "minio"
+    env_file:
+      - ./BM_fileService/.env
+    volumes:
+      - ./BM_fileService/minio-data:/var/lib/minio/data
+
