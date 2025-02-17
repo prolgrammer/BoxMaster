@@ -4,3 +4,6 @@
 [submodule "BM_fileService"]
 	path = BM_fileService
 	url = https://github.com/prolgrammer/BM_fileService.git
+[submodule "BM_package"]
+	path = BM_package
+	url = ./BM_package
