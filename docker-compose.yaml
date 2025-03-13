@@ -27,14 +27,16 @@ services:
       - ./BM_authService/config/redis:/etc/redis:ro
     command: "/etc/redis/redis.conf"
 
-#  app:
-#    container_name: "BM_app"
-#    env_file:
-#      - ./BM_fileService/.env
-#    build:
-#      context: ./BM_fileService
-#    ports:
-#      - ${APP_HOST}:${APP_PORT}
+  app:
+    container_name: "BM_app"
+    env_file:
+      - ./BM_fileService/.env
+    build:
+      context: ./BM_fileService
+    depends_on:
+      - minio
+    ports:
+      - ${APP_HOST}:${APP_PORT}
 
   minio:
     image: minio/minio
@@ -43,4 +45,14 @@ services:
       - ./BM_fileService/.env
     volumes:
       - ./BM_fileService/minio-data:/var/lib/minio/data
+    command: server --address ":9000" --console-address ":9001" /var/lib/minio/data
+    ports:
+      - "9000:9000"
+      - "9001:9001"
+
+  app_mongo_db:
+    image: mongo:8.0
+    container_name: "BM_app_db"
+    env_file:
+      - ./BM_fileService/.env
 
