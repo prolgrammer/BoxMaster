@@ -6,4 +6,4 @@
 	url = https://github.com/prolgrammer/BM_fileService.git
 [submodule "BM_package"]
 	path = BM_package
-	url = ./BM_package
+	url = https://github.com/prolgrammer/BM_package
